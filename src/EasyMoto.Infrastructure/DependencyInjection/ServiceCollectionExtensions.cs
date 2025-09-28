@@ -13,9 +13,8 @@ namespace EasyMoto.Infrastructure.DependencyInjection
         {
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
-
             services.AddScoped<IFilialRepository, FilialRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IMotoRepository, MotoRepository>();
