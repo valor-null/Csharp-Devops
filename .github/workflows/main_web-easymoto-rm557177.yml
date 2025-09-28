@@ -1,37 +1,43 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: 'Build and deploy ASP.Net Core app to Azure Web App: web-easymoto-rm557177'
+name: Build and deploy ASP.Net Core app to Azure Web App: web-easymoto-rm557177
 
 on:
   push:
-    branches:
-    - main
+    branches: [ main ]
   workflow_dispatch:
+
+env:
+  AZURE_WEBAPP_NAME: web-easymoto-rm557177
+  DOTNET_VERSION: '8.0.x'
+  PROJECT_PATH: src/EasyMoto.Api/EasyMoto.Api.csproj
+  PUBLISH_DIR: ./publish
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Set up .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '8.x'
+      - uses: actions/checkout@v4
 
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
-    
-    - name: dotnet publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
 
-    - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v2
-      with: 
-        app-name: 'web-easymoto-rm557177'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_442117ad630c425bb5d0aa51fd4acdcd }}
-        package: ${{env.DOTNET_ROOT}}/myapp 
+      - name: Restore
+        run: dotnet restore
 
+      - name: Build (Release)
+        run: dotnet build --no-restore -c Release
+
+      - name: Publish API
+        run: dotnet publish ${{ env.PROJECT_PATH }} -c Release -o ${{ env.PUBLISH_DIR }}
+
+      - name: List published files (debug)
+        run: ls -la ${{ env.PUBLISH_DIR }}
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          slot-name: production
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_442117AD630C425BB5D0AA51FD4ACDCD }}
+          package: ${{ env.PUBLISH_DIR }}
