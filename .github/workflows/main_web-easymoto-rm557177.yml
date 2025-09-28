@@ -1,4 +1,4 @@
-name: build-and-deploy-web-easymoto-rm557177
+name: Build and deploy ASP.NET Core app to Azure Web App: web-easymoto-rm557177
 
 on:
   push:
@@ -30,11 +30,8 @@ jobs:
       - name: Build (Release)
         run: dotnet build ${{ env.PROJECT_PATH }} --no-restore -c Release
 
-      - name: Publish API
+      - name: Publish
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release -o ${{ env.PUBLISH_DIR }}
-
-      - name: List published files
-        run: ls -la ${{ env.PUBLISH_DIR }}
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
