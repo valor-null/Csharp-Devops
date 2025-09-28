@@ -1,39 +1,41 @@
-name: 'Build and deploy ASP.NET Core app to Azure Web App: web-easymoto-rm557177'
+name: Build and deploy ASP.NET Core app to Azure Web App: web-easymoto-rm557177
 
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
 
+env:
+  AZURE_WEBAPP_NAME: web-easymoto-rm557177
+  DOTNET_VERSION: '8.0.x'
+  PROJECT_PATH: src/EasyMoto.Api/EasyMoto.Api.csproj
+  PUBLISH_DIR: publish
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up .NET
+      - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.x'
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restore
+        run: dotnet restore ${{ env.PROJECT_PATH }}
 
       - name: Build (Release)
-        env:
-          SPRING_DATASOURCE_URL: ${{ secrets.SPRING_DATASOURCE_URL }}
-          SPRING_DATASOURCE_USERNAME: ${{ secrets.SPRING_DATASOURCE_USERNAME }}
-          SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
-        run: |
-          dotnet restore src/EasyMoto.Api/EasyMoto.Api.csproj
-          dotnet build   src/EasyMoto.Api/EasyMoto.Api.csproj --no-restore -c Release
+        run: dotnet build ${{ env.PROJECT_PATH }} --no-restore -c Release
 
       - name: Publish
-        run: dotnet publish src/EasyMoto.Api/EasyMoto.Api.csproj -c Release -o ${{ env.DOTNET_ROOT }}/myapp
+        run: dotnet publish ${{ env.PROJECT_PATH }} -c Release -o ${{ env.PUBLISH_DIR }}
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'web-easymoto-rm557177'
-          slot-name: 'production'
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          slot-name: production
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_442117ad630c425bb5d0aa51fd4acdcd }}
-          package: ${{ env.DOTNET_ROOT }}/myapp
+          package: ${{ env.PUBLISH_DIR }}
