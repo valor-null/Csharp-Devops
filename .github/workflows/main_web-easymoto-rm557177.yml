@@ -1,3 +1,4 @@
+# Build and deploy ASP.Net Core app to Azure Web App: web-easymoto-rm557177
 name: Build and deploy ASP.Net Core app to Azure Web App: web-easymoto-rm557177
 
 on:
@@ -38,6 +39,6 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          slot-name: production
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_442117AD630C425BB5D0AA51FD4ACDCD }}
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_442117ad630c425bb5d0aa51fd4acdcd }}
           package: ${{ env.PUBLISH_DIR }}
