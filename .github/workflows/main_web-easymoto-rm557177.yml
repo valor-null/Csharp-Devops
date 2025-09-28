@@ -3,7 +3,7 @@ name: "Build and deploy ASP.NET Core app to Azure Web App: web-easymoto-rm557177
 on:
   push:
     branches:
-      - main 
+      - main
   workflow_dispatch:
 
 env:
@@ -11,6 +11,8 @@ env:
   DOTNET_VERSION: "8.0.x"
   PROJECT_PATH: "src/EasyMoto.Api/EasyMoto.Api.csproj"
   PUBLISH_DIR: "publish"
+  DB_SERVER_FQDN: "sqlserver-rm557177.database.windows.net"
+  DB_NAME: "easymotodb"
 
 jobs:
   build-and-deploy:
@@ -32,6 +34,29 @@ jobs:
 
       - name: Publish
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release -o ${{ env.PUBLISH_DIR }}
+
+      - name: Configure App Service settings (secrets -> connection string)
+        uses: azure/appservice-settings@v1
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_442117AD630C425BB5D0AA51FD4ACDCD }}
+          app-settings-json: |
+            [
+              { "name": "ASPNETCORE_ENVIRONMENT", "value": "Production", "slotSetting": false },
+              { "name": "ConnectionStrings__DefaultConnection",
+                "value": "Server=tcp:${{ env.DB_SERVER_FQDN }},1433;Database=${{ env.DB_NAME }};User ID=${{ secrets.SPRING_DATASOURCE_USERNAME }};Password=${{ secrets.SPRING_DATASOURCE_PASSWORD }};Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+                "slotSetting": false
+              },
+              { "name": "SPRING_DATASOURCE_URL", "value": "${{ secrets.SPRING_DATASOURCE_URL }}", "slotSetting": false }
+            ]
+          connection-strings-json: |
+            [
+              { "name": "DefaultConnection",
+                "value": "Server=tcp:${{ env.DB_SERVER_FQDN }},1433;Database=${{ env.DB_NAME }};User ID=${{ secrets.SPRING_DATASOURCE_USERNAME }};Password=${{ secrets.SPRING_DATASOURCE_PASSWORD }};Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
+                "type": "SQLAzure",
+                "slotSetting": false
+              }
+            ]
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
