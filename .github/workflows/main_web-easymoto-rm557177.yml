@@ -1,22 +1,23 @@
-# Build and deploy ASP.Net Core app to Azure Web App: web-easymoto-rm557177
-name: Build and deploy ASP.Net Core app to Azure Web App: web-easymoto-rm557177
+name: build-and-deploy-web-easymoto-rm557177
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   workflow_dispatch:
 
 env:
   AZURE_WEBAPP_NAME: web-easymoto-rm557177
-  DOTNET_VERSION: '8.0.x'
-  PROJECT_PATH: src/EasyMoto.Api/EasyMoto.Api.csproj
-  PUBLISH_DIR: ./publish
+  DOTNET_VERSION: "8.0.x"
+  PROJECT_PATH: "src/EasyMoto.Api/EasyMoto.Api.csproj"
+  PUBLISH_DIR: "publish"
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -24,21 +25,21 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Restore
-        run: dotnet restore
+        run: dotnet restore ${{ env.PROJECT_PATH }}
 
       - name: Build (Release)
-        run: dotnet build --no-restore -c Release
+        run: dotnet build ${{ env.PROJECT_PATH }} --no-restore -c Release
 
       - name: Publish API
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release -o ${{ env.PUBLISH_DIR }}
 
-      - name: List published files (debug)
+      - name: List published files
         run: ls -la ${{ env.PUBLISH_DIR }}
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_442117ad630c425bb5d0aa51fd4acdcd }}
+          slot-name: production
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_442117AD630C425BB5D0AA51FD4ACDCD }}
           package: ${{ env.PUBLISH_DIR }}
