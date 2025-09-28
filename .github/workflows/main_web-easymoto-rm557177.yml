@@ -1,4 +1,4 @@
-name: Build and deploy ASP.NET Core app to Azure Web App: web-easymoto-rm557177
+name: "Build and deploy ASP.NET Core app to Azure Web App: web-easymoto-rm557177"
 
 on:
   push:
