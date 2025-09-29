@@ -12,7 +12,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1620b78c-8586-4e5c-8065-b864854fcef8" name="Changes" comment="" />
+    <list default="true" id="1620b78c-8586-4e5c-8065-b864854fcef8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.EasyMoto/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EasyMoto/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -292,7 +294,7 @@
       <workItem from="1758990766351" duration="38713000" />
       <workItem from="1759070061799" duration="12503000" />
       <workItem from="1759085023845" duration="1297000" />
-      <workItem from="1759089623849" duration="5307000" />
+      <workItem from="1759089623849" duration="6611000" />
     </task>
     <task id="LOCAL-00001" summary="chore(estrutura): criar solução EasyMoto e projetos base (Api, Application, Domain, Infrastructure) com referências entre camadas">
       <option name="closed" value="true" />
@@ -558,7 +560,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759098952150</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="atualizando o Program.cs">
+      <option name="closed" value="true" />
+      <created>1759099632495</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1759099632495</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -579,7 +589,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="feat(funcionario): CRUD completo (entidade, EF config, repo, handlers, controller)" />
     <MESSAGE value="feat(patio): criar entidade, config EF, repositório, handlers e controller; docs(swagger): expor CRUD com paginação" />
     <MESSAGE value="feat(vaga): adicionar entidade, config EF, repositório, handlers e controller; db: criar migração Add_Vaga" />
     <MESSAGE value="feat(operador): criar entidade, repositório, handlers, controller e mapeamentos EF; chore(db): migration Add_Operador" />
@@ -604,7 +613,8 @@
     <MESSAGE value="feat(notificacoes): cria CRUD de Notificacao e leitura, incluindo endpoint para marcar como lida" />
     <MESSAGE value="chore: remover pastas não utilizadas (options, security, seed, enums, valueobjects, validation, auth, infra api)" />
     <MESSAGE value="adição das dependencias sql server" />
-    <option name="LAST_COMMIT_MESSAGE" value="adição das dependencias sql server" />
+    <MESSAGE value="atualizando o Program.cs" />
+    <option name="LAST_COMMIT_MESSAGE" value="atualizando o Program.cs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
