@@ -197,6 +197,144 @@ bash cli-scripts/deploy-easymoto.sh
 ```
 
 > **Após o deploy**: acesse `https://web-easymoto-rm557177.azurewebsites.net//swagger/index.html`
+---
+
+## 🧾 Inseerts
+Crie **na ordem abaixo** para evitar erros de relacionamento (FK). **Ajuste os IDs** (`filialId`, `legendaStatusId`, `motoId`, `usuarioOrigemId`) conforme o **retorno do Swagger**.
+
+### Filial — POST `/api/filiais`
+```json
+{
+  "nome": "Filial Centro",
+  "cep": "01001-000",
+  "cidade": "São Paulo",
+  "uf": "SP"
+}
+```
+```json
+{
+  "nome": "Filial Copacabana",
+  "cep": "22070-000",
+  "cidade": "Rio de Janeiro",
+  "uf": "RJ"
+}
+```
+
+### LegendaStatus — POST `/api/legendas-status`
+```json
+{
+  "titulo": "Disponível",
+  "descricao": "Moto pronta para uso",
+  "corHex": "#28A745",
+  "ativo": true
+}
+```
+```json
+{
+  "titulo": "Manutenção",
+  "descricao": "Moto em manutenção preventiva/corretiva",
+  "corHex": "#FFC107",
+  "ativo": true
+}
+```
+
+### Usuário — POST `/api/usuarios`
+```json
+{
+  "nomeCompleto": "Ana Operadora",
+  "email": "ana.operadora@example.com",
+  "telefone": "11 99999-9999",
+  "cpf": "12345678909",
+  "cepFilial": "01001-000",
+  "senha": "SenhaForte@123",
+  "confirmarSenha": "SenhaForte@123",
+  "perfil": 0,
+  "ativo": true,
+  "filialId": 1
+}
+```
+```json
+{
+  "nomeCompleto": "Bruno Admin",
+  "email": "bruno.admin@example.com",
+  "telefone": "21 98888-7777",
+  "cpf": "98765432100",
+  "cepFilial": "22070-000",
+  "senha": "SenhaForte@123",
+  "confirmarSenha": "SenhaForte@123",
+  "perfil": 1,
+  "ativo": true,
+  "filialId": 2
+}
+```
+> **perfil**: `0=OPERADOR`, `1=ADMIN`.
+
+### Moto — POST `/api/motos`
+```json
+{
+  "placa": "ABC1D23",
+  "modelo": "Honda CG 160 Fan",
+  "ano": 2022,
+  "cor": "Preta",
+  "ativo": true,
+  "filialId": 1,
+  "categoria": 0,
+  "statusOperacional": 0,
+  "legendaStatusId": 2,
+  "qrCode": "MOTO-ABC1D23"
+}
+```
+```json
+{
+  "placa": "XYZ9Z99",
+  "modelo": "Yamaha Fazer 250",
+  "ano": 2023,
+  "cor": "Azul",
+  "ativo": true,
+  "filialId": 2,
+  "categoria": 1,
+  "statusOperacional": 2,
+  "legendaStatusId": 1,
+  "qrCode": "MOTO-XYZ9Z99"
+}
+```
+> **categoria**: `0=POP`, `1=SPORT`, `2=E`  
+> **statusOperacional**: `0=DISPONIVEL`, `1=ALUGADA`, `2=MANUTENCAO`
+
+### Notificação — POST `/api/notificacoes`
+```json
+{
+  "tipo": 0,
+  "mensagem": "Moto cadastrada",
+  "motoId": 1,
+  "usuarioOrigemId": 3,
+  "escopo": 0
+}
+```
+```json
+{
+  "tipo": 1,
+  "mensagem": "Moto atualizada",
+  "motoId": 2,
+  "usuarioOrigemId": 1,
+  "escopo": 1
+}
+```
+> **tipo** (exemplos): `0=MOTO_CADASTRADA`, `1=MOTO_ATUALIZADA`  
+> **escopo**: `0=GLOBAL`, `1=USUARIO`, `2=FILIAL`
+
+### Marcar Notificação como Lida — POST `/api/notificacoes/{id}/marcar-lida`
+```json
+{
+  "usuarioId": 3
+}
+```
+```json
+{
+  "usuarioId": 1
+}
+```
+> Use o `id` da notificação retornado no POST anterior. Ajuste `usuarioId` conforme o usuário logado/testador.
 
 ---
 
