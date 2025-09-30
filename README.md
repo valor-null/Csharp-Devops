@@ -199,7 +199,7 @@ bash cli-scripts/deploy-easymoto.sh
 > **Após o deploy**: acesse `https://web-easymoto-rm557177.azurewebsites.net//swagger/index.html`
 ---
 
-## 🧾 Inseerts
+## 🧾 Inserts
 Crie **na ordem abaixo** para evitar erros de relacionamento (FK). **Ajuste os IDs** (`filialId`, `legendaStatusId`, `motoId`, `usuarioOrigemId`) conforme o **retorno do Swagger**.
 
 ### Filial — POST `/api/filiais`
