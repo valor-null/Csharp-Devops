@@ -5531,11 +5531,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\valer\\RiderProjects\\EasyMotoChallenger-Csharp\\EasyMoto.Tests\\EasyMoto.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\valer\\RiderProjects\\Csharp-Devops\\EasyMoto.Tests\\EasyMoto.Tests.csproj",
       "projectName": "EasyMoto.Tests",
-      "projectPath": "C:\\Users\\valer\\RiderProjects\\EasyMotoChallenger-Csharp\\EasyMoto.Tests\\EasyMoto.Tests.csproj",
+      "projectPath": "C:\\Users\\valer\\RiderProjects\\Csharp-Devops\\EasyMoto.Tests\\EasyMoto.Tests.csproj",
       "packagesPath": "C:\\Users\\valer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\valer\\RiderProjects\\EasyMotoChallenger-Csharp\\EasyMoto.Tests\\obj\\",
+      "outputPath": "C:\\Users\\valer\\RiderProjects\\Csharp-Devops\\EasyMoto.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

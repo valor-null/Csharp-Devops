@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4UB4B9azVWA=",
+  "dgSpecHash": "tqw5YyZlzlE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\valer\\RiderProjects\\EasyMotoChallenger-Csharp\\src\\EasyMoto.Api\\EasyMoto.Api.csproj",
+  "projectFilePath": "C:\\Users\\valer\\RiderProjects\\Csharp-Devops\\src\\EasyMoto.Api\\EasyMoto.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\valer\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\valer\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",

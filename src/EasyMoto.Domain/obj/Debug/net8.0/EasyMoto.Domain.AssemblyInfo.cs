@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EasyMoto.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0d353383b01edfa6cb70b0775bc7690cd000e5e9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62e3911b362418500ee3a237b3c50ab517e9dcce")]
 [assembly: System.Reflection.AssemblyProductAttribute("EasyMoto.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EasyMoto.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

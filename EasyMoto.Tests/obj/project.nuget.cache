@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "QkZp1Qz2+GE=",
+  "dgSpecHash": "9S/qgIHGq0U=",
   "success": true,
-  "projectFilePath": "C:\\Users\\valer\\RiderProjects\\EasyMotoChallenger-Csharp\\EasyMoto.Tests\\EasyMoto.Tests.csproj",
+  "projectFilePath": "C:\\Users\\valer\\RiderProjects\\Csharp-Devops\\EasyMoto.Tests\\EasyMoto.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\valer\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "C:\\Users\\valer\\.nuget\\packages\\microsoft.codecoverage\\17.8.0\\microsoft.codecoverage.17.8.0.nupkg.sha512",
